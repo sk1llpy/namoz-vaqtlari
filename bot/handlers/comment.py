@@ -30,6 +30,9 @@ async def comment_text_handler(message: types.Message, state: FSMContext):
                     username = message.from_user.username
                 )
             )
+
+            await state.finish()
+            await message.answer("<b>Izoh yuborildi ✅</b>\n\n<i>Izoh qoldirganingiz uchun raxmat 😊</i>")
     else:
         await state.finish()
         await message.answer(text="<b>Kerakli bo'limni tanlang 👇</b>",
