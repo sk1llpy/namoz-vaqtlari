@@ -22,4 +22,5 @@ async def settings_handler(message: types.Message, state: FSMContext):
         await message.answer("<b>Xatolik yuz berdi ❌</b>")
 
 
-@dp.message_handler(text=["S"])
+@dp.message_handler(text=["📍 Shaharni o'zgartirish"], state=SettingsState.command)
+async def change_city_handler(message: types.Message, state: FSMContext): ...
