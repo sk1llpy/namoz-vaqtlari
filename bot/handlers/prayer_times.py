@@ -41,7 +41,7 @@ async def page_handler(call: types.CallbackQuery):
             msg_id = call.message.message_id
             await bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=msg_id, 
                                                 reply_markup=regions_btn(current_page=page, user_id=call.from_user.id))
-            
+
 
 @dp.callback_query_handler(lambda call: str(call.data).startswith('nextweek_') or str(call.data).startswith('backweek_'))
 async def page_handler(call: types.CallbackQuery):
