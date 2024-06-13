@@ -50,7 +50,7 @@ class UserGetApiView(APIView):
                     'mode': user.tasbih_mode,
                     'region': user.region,
                     'notification': user.notification
-                }
+                }, status=status.HTTP_200_OK
             )
         except user.DoesNotExist:
             return Response(
@@ -58,7 +58,7 @@ class UserGetApiView(APIView):
                     'status': 400,
                     'message': 'User not found',
                     'data': {'user_id': request.data.get("user_id")}
-                }
+                }, status=status.HTTP_200_OK
             )
 
 
