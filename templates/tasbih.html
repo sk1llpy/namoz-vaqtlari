@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islam App - Website</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+</head>
+<body id="body__index">
+    <header id="header__index">
+        <div class="container">
+            <div class="d-flex justify-content-center d-none d-sm-flex" style="gap: 40px;">
+                <a href="{% url 'home' %}"><div class="d-flex" style="gap: 10px;"><i class="fa-solid fa-clock" style="font-size: 25px;"></i><p class="d-none d-sm-block">Namoz vaqtlari</p></div></a>
+                <a href="{% url 'home' %}"><div class="d-flex" style="gap: 10px;"><i class="fa-solid fa-person-praying" style="font-size: 25px;"></i><p class="d-none d-sm-block">Zikr va Duolar</p></div></a>
+                <a href="{% url 'tasbih' %}"><div class="d-flex" style="gap: 10px;"><i><img src="{% static 'images/4939058.png' %}" alt="" style="width: 25px;"></i><p class="d-none d-sm-block">Tasbih</p></div></a>
+            </div>
+            <div class="navbar-container d-block d-sm-none">
+                <button class="navbar-toggle" id="navbar-toggle-btn" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"><i class="fa-solid fa-star-and-crescent" style="font-size: 18px;"></i></button>
+                <nav class="navbar" id="navbarMenu" style="padding-top: 30px;">
+                    <ul>
+                        <li>
+                            <a href="{% url 'home' %}" class="d-flex" style="gap: 5px;" id="home_a"><i class="fa-solid fa-clock" style="font-size: 18px;"></i><p style="font-size: 15px; margin-top: -2px;">Namoz vaqtlari</p></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'home' %}" class="d-flex" style="gap: 5px;" id="zikr_a"><i class="fa-solid fa-person-praying" style="font-size: 18px;"></i><p style="font-size: 15px; margin-top: -2px;">Zikr va duolar</p></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'tasbih' %}" class="d-flex" style="gap: 5px;" id="tasbih_a"><i><img src="{% static 'images/4939058.png' %}" alt="" style="width: 22px;"></i><p style="font-size: 15px; margin-top: 0px;">Tasbih</p></a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <script>
+                    // JavaScript functionality
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const toggleBtn = document.getElementById("navbar-toggle-btn");
+                        const menu = document.getElementById("navbarMenu");
+                
+                        toggleBtn.addEventListener("click", function () {
+                            menu.classList.toggle("active");
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </header>
+    
+    <main id="tasbih__main">
+        <div class="container">
+            <div class="d-flex justify-content-center" onclick="changeMode()" style="cursor: pointer;"><h1 id="count">— </h1><span id="max-count"> ——</span></div>
+            <hr style="color: white; margin-top:-5px;">
+            <div class="d-flex justify-content-center buttons">
+                <button onclick="reset()">Reset</button>
+                <button onclick="decreaseNumber()">Kamaytirish</button>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 10px;" class="tasbih">
+                <button onclick="increaseNumber()">
+                    <img src="{% static 'images/pngimg.com - allah_PNG30.png' %}" alt="">
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/e0d29f85c1.js" crossorigin="anonymous"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="{% static 'js/tasbih.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+REGIONS = ['Toshkent', 'Samarqand', 'Jizzax', "Qo'qon", 'Andijon',
+                   'Namangan', "Farg'ona", "Navoiy", "Termiz", "Qarshi",
+                   'Buxoro', 'Guliston', "Nukus", "Xiva", "Urganch", "Chimkent",
+                   "O'sh", "Bekobod", "Bishkek", "Denov", "Jalolobod", "Jambul",
+                   "Jomboy", "Kattaqo'rg'on", "Konibodom", "Marg'ilon", "Nurota",
+                   "Turkiston", "Xo'jand", "Shahrixon", "Xo'jaobod",
+                   "Qo'rg'ontepa", "Xonobod", "Pop", "Chust", "Chortoq",
+                   "Uchqo'rg'on", "Oltiariq", "Rishton", "Quva", "Olmaota", "Sayram",
+                   "Angren", "Burchmulla", "Olot", "Gazli", "Qorovulbozor", "Qorako'l",
+                   "Paxtaobod", "Zomin", "Do'stlik", "Arnasoy", "O'smat", "G'allaorol",
+                   "Uchtepa", "O'g'iz", "Tomdi", "Konimex", "Qiziltepa", "Zarafshon",
+                   "Uzunquduq", "Uchquduq", "Mingbuloq", "To'rtko'l", "Taxtako'pir",
+                   "Chimboy", "Mo'ynoq", "Oltinko'l", "Shumanay", "Qo'ng'irot",
+                   "Urgut", "Buloqboshi", "Qumqo'rg'on", "Boysun", "Sherobod",
+                   "Xazorasp", "Xonqa", "Yangibozor", "Shovot",
+                   "G'uzor", "Koson", "Tallimarjon", "Muborak", "Dushanbe", "Ashxabod",
+                   "Turkmanobod", "Toshhovuz"]
+

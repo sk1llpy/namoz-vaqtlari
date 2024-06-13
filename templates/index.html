@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islam App - Website</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'style/style.css/' %}">
+</head>
+<body id="body__index">
+    <header id="header__index">
+        <div class="container">
+            <div class="d-flex justify-content-center d-none d-sm-flex" style="gap: 40px;">
+                <a href="{% url 'home' %}"><div class="d-flex" style="gap: 10px;"><i class="fa-solid fa-clock" style="font-size: 25px;"></i><p class="d-none d-sm-block">Namoz vaqtlari</p></div></a>
+                <a href="{% url 'home' %}"><div class="d-flex" style="gap: 10px;"><i class="fa-solid fa-person-praying" style="font-size: 25px;"></i><p class="d-none d-sm-block">Zikr va Duolar</p></div></a>
+                <a href="{% url 'tasbih' %}"><div class="d-flex" style="gap: 10px;"><i><img src="{% static 'images/4939058.png' %}" alt="" style="width: 25px;"></i><p class="d-none d-sm-block">Tasbih</p></div></a>
+            </div>
+            <div class="navbar-container d-block d-sm-none">
+                <p style="color: white; margin-top: 20px; margin-left: 10%; font-weight: 700;"><i class="fa-solid fa-location-dot"> </i><span id="region-user"> ——————</span></p>
+                <button class="navbar-toggle" id="navbar-toggle-btn" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"><i class="fa-solid fa-star-and-crescent" style="font-size: 18px;"></i></button>
+                <nav class="navbar" id="navbarMenu" style="padding-top: 30px;">
+                    <ul>
+                        <li>
+                            <a href="{% url 'home' %}" class="d-flex" style="gap: 5px;" id="home_a"><i class="fa-solid fa-clock" style="font-size: 18px;"></i><p style="font-size: 15px; margin-top: -2px;">Namoz vaqtlari</p></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'home' %}" class="d-flex" style="gap: 5px;" id="zikr_a"><i class="fa-solid fa-person-praying" style="font-size: 18px;"></i><p style="font-size: 15px; margin-top: -2px;">Zikr va duolar</p></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'tasbih' %}" class="d-flex" style="gap: 5px;" id="tasbih_a"><i><img src="{% static 'images/4939058.png' %}" alt="" style="width: 22px;"></i><p style="font-size: 15px; margin-top: 0px;">Tasbih</p></a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <script>
+                    // JavaScript functionality
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const toggleBtn = document.getElementById("navbar-toggle-btn");
+                        const menu = document.getElementById("navbarMenu");
+                
+                        toggleBtn.addEventListener("click", function () {
+                            menu.classList.toggle("active");
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </header>
+
+    <main id="main__index">
+        <div class="container">
+            <h1>Bugungi namoz vaqtlari</h1>
+            <div class="row prayer_times" style="gap: 10px;">
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Tong (saxar)</h5>
+                    <hr>
+                    <p id="prayer-time-tong">صبر</p>
+                </div>
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Quyosh</h5>
+                    <hr>
+                    <p id="prayer-time-quyosh">صبر</p>
+                </div>
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Peshin</h5>
+                    <hr>
+                    <p id="prayer-time-peshin">صبر</p>
+                </div>
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Asr</h5>
+                    <hr>
+                    <p id="prayer-time-asr">صبر</p>
+                </div>
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Shom (iftor)</h5>
+                    <hr>
+                    <p id="prayer-time-shom">صبر</p>
+                </div>
+                <div class="col-md-4 col-12" style="border-radius: 20px; background-color: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h5 style="text-align: center; color: white;">Xufton</h5>
+                    <hr>
+                    <p id="prayer-time-xufton">صبر</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="index__zikr_and_dua">
+        <div class="container">
+            
+        </div>
+    </section>
+    
+    <script src="https://kit.fontawesome.com/e0d29f85c1.js" crossorigin="anonymous"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
