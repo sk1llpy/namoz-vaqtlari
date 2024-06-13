@@ -13,7 +13,7 @@ import datetime
 from aiocron import crontab
 
 
-@crontab("31 1 * * *")
+@crontab("0 1 * * *")
 async def update_prayer_time():
     split_day = str(datetime.datetime.now().strftime('%x')).split("/")
     today = f"""{split_day[1]}-{split_day[0]}-{split_day[2]}"""
