@@ -32,7 +32,8 @@ async def comment_text_handler(message: types.Message, state: FSMContext):
             )
 
             await state.finish()
-            await message.answer("<b>Izoh yuborildi ✅</b>\n\n<i>Izoh qoldirganingiz uchun raxmat 😊</i>")
+            await message.answer("<b>Izoh yuborildi ✅</b>\n\n<i>Izoh qoldirganingiz uchun raxmat 😊</i>", 
+                                 reply_markup=menu_btn(message.from_user.id))
     else:
         await state.finish()
         await message.answer(text="<b>Kerakli bo'limni tanlang 👇</b>",
