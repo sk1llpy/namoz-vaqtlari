@@ -13,7 +13,7 @@ from keyboards.inline.comment import user_btn
 @dp.message_handler(text=["✍️ Izoh qoldirish"])
 async def comment_handler(message: types.Message, state: FSMContext):
     await CommentState.comment.set()
-    await message.answer("<b>Izoh qoldiring</b>", reply_markup=back_btn)
+    await message.answer("<b>Izoh qoldiring 👇</b>", reply_markup=back_btn)
 
 
 @dp.message_handler(state=CommentState.comment)
