@@ -11,7 +11,7 @@ async def turn_off_notification(call: types.CallbackQuery):
     user = get_user(user_id=user_id)
 
     if user.status_code == 200:
-        if user.json()['notification'] if user.json()['notification'] else False:
+        if user.json()['notification']:
             try:
                 response = update_user_notification(
                     user_id = user_id,
