@@ -7,7 +7,7 @@ from functions.API.users.update_user import update_user_notification
 @dp.callback_query_handler(text=['turn_off_notification'])
 async def turn_off_notification(call: types.CallbackQuery):
     user_id = call.from_user.id
-    print(user_id)
+
     try:
         response = update_user_notification(
             user_id = user_id,
