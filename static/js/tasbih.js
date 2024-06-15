@@ -1,4 +1,4 @@
-let API_DOMAIN = 'https://4e22-213-230-102-105.ngrok-free.app';
+let API_DOMAIN = 'https://6aba-213-230-102-105.ngrok-free.app';
 let tg = window.Telegram.WebApp;
 
 tg.expand();

@@ -11,6 +11,5 @@ else:
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-ADMINS = os.getenv("ADMINS").split(",") if os.getenv("ADMINS").split(",") else [os.getenv("ADMINS")]
-ADMINS = [int(admin) for admin in ADMINS]
+ADMINS = [int(admin) for admin in os.getenv("ADMINS").split(",")]
 DOMAIN = os.getenv("DOMAIN")
