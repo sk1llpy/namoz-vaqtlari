@@ -10,13 +10,13 @@ from keyboards.reply.menu import menu_btn
 from keyboards.inline.comment import user_btn
 
 
-@dp.message_handler(text=["✍️ Izoh qoldirish"])
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=["✍️ Izoh qoldirish"])
 async def comment_handler(message: types.Message, state: FSMContext):
     await CommentState.comment.set()
     await message.answer("<b>Izoh qoldiring 👇</b>", reply_markup=back_btn)
 
 
-@dp.message_handler(state=CommentState.comment)
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), state=CommentState.comment)
 async def comment_text_handler(message: types.Message, state: FSMContext):
     if not message.text == "⬅️ Orqaga":
         for admin in ADMINS:

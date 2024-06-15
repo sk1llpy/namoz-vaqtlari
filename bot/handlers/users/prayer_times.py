@@ -11,21 +11,21 @@ from data.regions import REGIONS
 from text.text import PRAYER_TIME, PRAYER_TIME_WEEKLY
 
 
-@dp.message_handler(text=['🧎 Namoz vaqtlari'])
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=['🧎 Namoz vaqtlari'])
 async def prayer_times_handler(message: types.Message):
     msg = await message.answer("ㅤ", reply_markup=types.ReplyKeyboardRemove())
     await msg.delete()
     await message.answer("<b>Kerakli xududni tanlang 👇</b>", reply_markup=regions_btn(current_page=0, user_id=message.from_user.id))
 
 
-@dp.message_handler(text=['📅 Haftalik taqvim']) 
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=['📅 Haftalik taqvim']) 
 async def prayer_times_week_handler(message: types.Message):
     msg = await message.answer("ㅤ", reply_markup=types.ReplyKeyboardRemove())
     await msg.delete()
     await message.answer("<b>Kerakli xududni tanlang 👇</b>", reply_markup=regions_btn_week(current_page=0, user_id=message.from_user.id))
 
 
-@dp.callback_query_handler(lambda call: str(call.data).startswith('next_') or str(call.data).startswith('back_'))
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), lambda call: str(call.data).startswith('next_') or str(call.data).startswith('back_'))
 async def page_handler(call: types.CallbackQuery):
     if call.data.startswith('next_'):
         page = int(call.data.split('_')[1])
@@ -43,7 +43,7 @@ async def page_handler(call: types.CallbackQuery):
                                                 reply_markup=regions_btn(current_page=page, user_id=call.from_user.id))
 
 
-@dp.callback_query_handler(lambda call: str(call.data).startswith('nextweek_') or str(call.data).startswith('backweek_'))
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), lambda call: str(call.data).startswith('nextweek_') or str(call.data).startswith('backweek_'))
 async def page_handler(call: types.CallbackQuery):
     if call.data.startswith('nextweek_'):
         page = int(call.data.split('_')[1])
@@ -61,7 +61,7 @@ async def page_handler(call: types.CallbackQuery):
                                                 reply_markup=regions_btn_week(current_page=page, user_id=call.from_user.id))
 
 
-@dp.callback_query_handler(lambda call: str(call.data).endswith("_week") and str(call.data).split("_week")[0] in REGIONS)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), lambda call: str(call.data).endswith("_week") and str(call.data).split("_week")[0] in REGIONS)
 async def prayer_times_weekly_handler(call: types.CallbackQuery):
     region = str(call.data).split("_week")[0]
     data = get_prayer_weekly_time(region)
@@ -81,7 +81,7 @@ async def prayer_times_weekly_handler(call: types.CallbackQuery):
                                     text=f"""<b>{region} vaqti bo'yicha namoz vaqtlari topilmadi ❌</b>""", reply_markup=back_btn_week)
 
 
-@dp.callback_query_handler(text=REGIONS)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=REGIONS)
 async def prayer_times_handler(call: types.CallbackQuery):
     data = get_prayer_time(call.data)
 
@@ -103,9 +103,8 @@ async def prayer_times_handler(call: types.CallbackQuery):
         await bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                                     text=f"""<b>{call.data} vaqti bo'yicha namoz vaqtlari topilmadi ❌</b>""", reply_markup=back_btn)
 
-    
 
-@dp.callback_query_handler(text=['backto_prayer_time'])
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=['backto_prayer_time'])
 async def back_prayer_handler(call: types.CallbackQuery):
     await bot.edit_message_text(
         chat_id=call.message.chat.id,
@@ -115,7 +114,7 @@ async def back_prayer_handler(call: types.CallbackQuery):
     )
 
 
-@dp.callback_query_handler(text=['backtoweek_prayer_time'])
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=['backtoweek_prayer_time'])
 async def back_prayer_week_handler(call: types.CallbackQuery):
     await bot.edit_message_text(
         chat_id=call.message.chat.id,
@@ -125,7 +124,7 @@ async def back_prayer_week_handler(call: types.CallbackQuery):
     )
 
 
-@dp.callback_query_handler(text=['backto_menu'])
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=['backto_menu'])
 async def back_menu_handler(call: types.CallbackQuery):
     await bot.delete_message(
         chat_id=call.message.chat.id,
@@ -133,3 +132,4 @@ async def back_menu_handler(call: types.CallbackQuery):
     
     await call.message.answer(text="<b>Kerakli bo'limni tanlang 👇</b>",
         reply_markup=menu_btn(call.from_user.id))
+

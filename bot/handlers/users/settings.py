@@ -15,7 +15,7 @@ from keyboards.inline.back import back_btn
 
 
 # Settings
-@dp.message_handler(text=["⚙️ Sozlamalar"])
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=["⚙️ Sozlamalar"])
 async def settings_handler(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     user = get_user(user_id=user_id)
@@ -31,7 +31,7 @@ async def settings_handler(message: types.Message, state: FSMContext):
 
 
 # Back to main menu
-@dp.message_handler(text=["⬅️ Orqaga"], state=SettingsState.command)
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=["⬅️ Orqaga"], state=SettingsState.command)
 async def settings_handler(message: types.Message, state: FSMContext):
     await state.finish()
 
@@ -40,7 +40,7 @@ async def settings_handler(message: types.Message, state: FSMContext):
 
 
 # Change city
-@dp.message_handler(text=["📍 Shaharni o'zgartirish"], state=SettingsState.command)
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=["📍 Shaharni o'zgartirish"], state=SettingsState.command)
 async def change_city_handler(message: types.Message, state: FSMContext):
     msg = await message.answer("ㅤ", reply_markup=types.ReplyKeyboardRemove())
     await msg.delete()
@@ -50,7 +50,7 @@ async def change_city_handler(message: types.Message, state: FSMContext):
 
 
 # Select City
-@dp.callback_query_handler(text=REGIONS, state=SettingsState.change_city)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=REGIONS, state=SettingsState.change_city)
 async def prayer_times_handler(call: types.CallbackQuery, state: FSMContext):
     try:
         update_user_region(user_id=call.from_user.id, region=call.data)
@@ -61,7 +61,7 @@ async def prayer_times_handler(call: types.CallbackQuery, state: FSMContext):
                                 text=f"""<b>Xatolik yuz berdi ❌</b>""", reply_markup=back_btn)
 
 # Next / Back
-@dp.callback_query_handler(lambda call: str(call.data).startswith('next_') or str(call.data).startswith('back_'), state=SettingsState.change_city)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), lambda call: str(call.data).startswith('next_') or str(call.data).startswith('back_'), state=SettingsState.change_city)
 async def city_change_page_handler(call: types.CallbackQuery):
     if call.data.startswith('next_'):
         page = int(call.data.split('_')[1])
@@ -80,7 +80,7 @@ async def city_change_page_handler(call: types.CallbackQuery):
 
 
 # Back to settings
-@dp.callback_query_handler(text=['backto_prayer_time'], state=SettingsState.change_city)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=['backto_prayer_time'], state=SettingsState.change_city)
 async def back_prayer_handler(call: types.CallbackQuery, state: FSMContext):
     user = get_user(user_id=call.from_user.id)
     await call.message.delete()
@@ -91,7 +91,7 @@ async def back_prayer_handler(call: types.CallbackQuery, state: FSMContext):
     
 
 # Back to main menu
-@dp.callback_query_handler(text=['backto_menu'], state=SettingsState.change_city)
+@dp.callback_query_handler(lambda call: not str(call.message.chat.id).startswith("-"), text=['backto_menu'], state=SettingsState.change_city)
 async def back_menu_handler(call: types.CallbackQuery, state: FSMContext):
     await call.message.delete()
     await state.finish()
@@ -101,7 +101,7 @@ async def back_menu_handler(call: types.CallbackQuery, state: FSMContext):
     
 
 # On/Off notification
-@dp.message_handler(text=["🔔 Bildirishnomani yoqish", "🔕 Bildirishnomani o'chirish"], state=SettingsState.command)
+@dp.message_handler(lambda message: not str(message.chat.id).startswith("-"), text=["🔔 Bildirishnomani yoqish", "🔕 Bildirishnomani o'chirish"], state=SettingsState.command)
 async def off_on_notification(message: types.Message, state: FSMContext):
     user = get_user(user_id=message.from_user.id)
 

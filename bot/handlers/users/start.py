@@ -7,7 +7,7 @@ from keyboards.reply.menu import menu_btn
 from text import text
 
 
-@dp.message_handler(CommandStart())
+@dp.message_handler(CommandStart(), lambda message: not str(message.chat.id).startswith("-"))
 async def send_welcome(message: types.Message):
     create_user(message.from_user.id)
 
