@@ -3,3 +3,5 @@ aiocron
 Django==4.0
 djangorestframework==3.14.0
 python-dotenv
+drf-yasg
+split-settings
